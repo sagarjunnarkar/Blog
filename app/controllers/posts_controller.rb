@@ -1,13 +1,15 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-  def index
-    @posts = Post.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+  def index
+    @posts = Post.scoped
+    render layout: 'home'
+    #fresh_when last_modified: @posts.maximum(:updated_at)
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @posts }
+    # end
   end
 
   # GET /posts/1
